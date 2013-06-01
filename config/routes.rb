@@ -1,4 +1,5 @@
 RezzoRails::Application.routes.draw do
+  resources :reports
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
