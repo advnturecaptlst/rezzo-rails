@@ -49,5 +49,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  # database: rezzo-rails_production
-  # pool: 5
+  database: rezzo-rails_production
+  pool: 5
+  # username: rezzo-rails
+  # password:
