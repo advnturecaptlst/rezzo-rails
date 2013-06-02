@@ -1,0 +1,101 @@
+/ =form_tag(photos_path, :multipart => true) do
+/   =file_field_tag 'picture'
+/   =submit_tag
+%body
+  #wrapper
+    #header.bar
+      %h1 Resource Maps
+    #menu.bar
+      upload | search | login
+    .bar
+      #upload.main
+        .entry
+          / for each photo
+          .column
+            %a{:href => "JavaScript:imgPopup('images/photo.jpg','big');"}
+              %img{:src => "images/photo_small.jpg"}/
+          %form
+            .column
+              %fieldset
+                %legend Photo Information
+                %p
+                  Title:
+                  %br/
+                  %input{:name => "Title", :style => "width: 20em;", :type => "text"}/
+                %p
+                  Description:
+                  %br/
+                  %textarea{:name => "Description", :style => "height:6em; width: 20em;"}
+                    :preserve
+            .column
+              %fieldset
+                %legend Resource Types
+                .column
+                  %input{:name => "sector", :type => "checkbox", :value => "Natural"}>/
+                  Natural Resources
+                  %ul
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "Water"}>/
+                      Water Supply
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "Plantation"}>/
+                      Plantation
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "Hydro"}>/
+                      Hydropower
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "Solar"}>/
+                      Solar Power
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "Sand"}>/
+                      Sand
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "Clay"}>/
+                      Clay
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "Fish"}>/
+                      Fish
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "New1"}>/
+                      New Entry:
+                      %br/
+                      %input{:name => "Agriculture New", :type => "text"}/
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "New2"}>/
+                      New Entry:
+                      %br/
+                      %input{:name => "Agriculture New", :type => "text"}/
+                .column
+                  %input{:name => "sector", :type => "checkbox", :value => "Infrastructure"}>/
+                  Infrastructure
+                  %ul
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "New1"}>/
+                      New Entry:
+                      %br/
+                      %input{:name => "Agriculture New", :type => "text"}/
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "New2"}>/
+                      New Entry:
+                      %br/
+                      %input{:name => "Agriculture New", :type => "text"}/
+                .column
+                  %input{:name => "sector", :type => "checkbox", :value => "Skills"}>/
+                  Skills
+                  %ul
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "New1"}>/
+                      New Entry:
+                      %br/
+                      %input{:name => "Agriculture New", :type => "text"}/
+                    %li
+                      %input{:name => "Agriculture", :type => "checkbox", :value => "New2"}>/
+                      New Entry:
+                      %br/
+                      %input{:name => "Agriculture New", :type => "text"}/
+  %form{:action => "/", :method => "post", :enctype=>'multipart/form-data'}
+    %input(type='file' name='picture')    
+    %br
+    %input(type='submit' value='Upload!')
+
+
