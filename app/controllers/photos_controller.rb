@@ -29,7 +29,7 @@ class PhotosController < ApplicationController
     tables = ft.show_tables
     rezzo  = tables.select{|t| t.name == "Rezzo"}.first
 
-    data = [{ "Geo" => "<Point><coordinates>#{latitude},#{longitude},0.0</coordinates><Point>" }]
+    data = [{ "Geo" => "<Point><coordinates>#{latitude},#{longitude}</coordinates></Point>" }]
     rezzo.insert(data)
   end
 end
