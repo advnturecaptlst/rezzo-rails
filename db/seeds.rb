@@ -6,17 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+category = { 1 => "school", 2 => "clinic", 3 => "water pump" }
+
 ft = GData::Client::FusionTables.new 
 ft.clientlogin(ENV['GOOGLE_USERNAME'], ENV['GOOGLE_PASS'])
 ft.set_api_key(ENV['GOOGLE_KEY']) 
 
 tables = ft.show_tables
-rezzo  = tables.select{|t| t.name == "Rezzo"}.first
+rezzo  = tables.select{|t| t.name == "Togo"}.first
 
-(8..10).step(0.10) do |n|
-  data = [{ "Village"      => "Village in Togo",
-            "Category"     => ['school', 'clinic', 'water pump'].sample,
-            "Description"  => "seed data",
-            "Geo"          => "<Point><coordinates>1.166667, #{n}</coordinates></Point>" }]
+10.times do
+  code = category.keys.sample
+  data = [{ "Village"       => "Wezo",
+            "Category_id"   => code,
+            "Category"      => category[code],
+            "Description"   => "seed data",
+            "Geo"           => "#{8 + (rand(1..5)/100.0)},#{1.166667 + (rand(1..5)/100.0)}" }]
   rezzo.insert(data)
 end
