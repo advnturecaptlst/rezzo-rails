@@ -53,6 +53,10 @@ GEM
     filepicker-rails (0.1)
       multi_json (~> 1.6)
       railties (>= 3.1.0, < 5.0)
+    fusion_tables (0.4.1)
+      gdata_19 (>= 1.1.2)
+      json (>= 1.7.6)
+    gdata_19 (1.1.5)
     haml (4.0.3)
       tilt
     hike (1.2.2)
@@ -124,6 +128,7 @@ DEPENDENCIES
   exifr
   faraday
   filepicker-rails
+  fusion_tables
   haml
   jquery-rails
   pg
