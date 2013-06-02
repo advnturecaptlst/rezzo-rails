@@ -2,26 +2,41 @@ $(document).ready(function(){
   var MapsLib = MapsLib || {}
   var MapsLib = {
 
-    fusionTableId:      "1m4Ez9xyTGfY2CU6O-UgEcPzlS0rnzLU93e4Faa0",
-    googleApiKey:       "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
-    locationColumn:     "geometry",
+    fusionTableId:      "1DcX8-vvDmSQINxNX9zoetVjBnZo7tGM8LrTM57E",
+    googleApiKey:       "AIzaSyD_JUx-4hkNn5bqllP4OyninnBp-YtOPbg",
+    locationColumn:     "Geo",
     defaultZoom:        11,
-    map_centroid:       new google.maps.LatLng(41.8781136, -87.66677856445312),
+    map_centroid:       new google.maps.LatLng(8.4, 1.166667),
     searchrecords:      null,
 
     initialize: function(){
       map = new google.maps.Map(map_canvas, MapsLib.map_options());
-      MapsLib.searchrecords = null
+
       MapsLib.doSearch();
     },
 
     doSearch: function(location) {
+      MapsLib.clearSearch();
+      console.log("doSearch")
       var whereClause = MapsLib.locationColumn + " not equal to ''";
-
+      // var type_column = "'type'";
+      // var searchType = type_column + " IN (-1,";
+      // if ( $("#cbType1").is(':checked')) searchType += "1,";
+      // if ( $("#cbType2").is(':checked')) searchType += "2,";
+      // if ( $("#cbType3").is(':checked')) searchType += "3,";
+      // if ( $("#cbType4").is(':checked')) searchType += "4,";
+      // whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
+      console.log(whereClause);
       MapsLib.submitSearch(whereClause, map);
     },
 
+    clearSearch: function(){
+      console.log("clearSearch");
+      // MapsLib.searchrecords.setMap(null);
+    },
+
     submitSearch: function(whereClause, map, location) {
+      console.log("setMap");
       MapsLib.searchrecords = new google.maps.FusionTablesLayer({
         query: {
           from:   MapsLib.fusionTableId,
@@ -60,54 +75,52 @@ $(document).ready(function(){
   };
 
 // - application begin
-MapsLib.initialize();
-MapsLib.findMe();
+
+$(window).resize(function () {
+  var h = $(window).height(),
+            offsetTop = 90; // Calculate the top offset
+
+            $('#map_canvas').css('height', (h - offsetTop));
+          }).resize();
+
+$(function() {
+  MapsLib.initialize();
+
+  $(':checkbox').click(function(){
+    MapsLib.doSearch();
+  });
+
+  $(':radio').click(function(){
+    MapsLib.doSearch();
+  });
+
+  $('#search_radius').change(function(){
+    MapsLib.doSearch();
+  });
+
+  $('#search').click(function(){
+    MapsLib.doSearch();
+  });
+
+  $('#find_me').click(function(){
+    MapsLib.findMe(); 
+    return false;
+  });
+
+  $('#reset').click(function(){
+    $.address.parameter('address','');
+    MapsLib.initialize(); 
+    return false;
+  });
+
+  $(":text").keydown(function(e){
+    var key =  e.keyCode ? e.keyCode : e.which;
+    if(key == 13) {
+      $('#search').click();
+      return false;
+    }
+  });
 });
 
+});
 
-// $(window).resize(function () {
-//   var h = $(window).height(),
-//             offsetTop = 90; // Calculate the top offset
-
-//             $('#map_canvas').css('height', (h - offsetTop));
-//           }).resize();
-
-// $(function() {
-//   MapsLib.initialize();
-//   $("#search_address").geocomplete();
-
-//   $(':checkbox').click(function(){
-//     MapsLib.doSearch();
-//   });
-
-//   $(':radio').click(function(){
-//     MapsLib.doSearch();
-//   });
-
-//   $('#search_radius').change(function(){
-//     MapsLib.doSearch();
-//   });
-
-//   $('#search').click(function(){
-//     MapsLib.doSearch();
-//   });
-
-//   $('#find_me').click(function(){
-//     MapsLib.findMe(); 
-//     return false;
-//   });
-
-//   $('#reset').click(function(){
-//     $.address.parameter('address','');
-//     MapsLib.initialize(); 
-//     return false;
-//   });
-
-//   $(":text").keydown(function(e){
-//     var key =  e.keyCode ? e.keyCode : e.which;
-//     if(key == 13) {
-//       $('#search').click();
-//       return false;
-//     }
-//   });
-// });
