@@ -1,0 +1,8 @@
+source "http://rubygems.org"
+
+gem "sinatra"
+gem 'exifr'
+# gem 'filepicker-rails'
+gem 'fusion_tables'
+gem 'haml'
+gem 'shotgun'
