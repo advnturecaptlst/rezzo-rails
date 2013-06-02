@@ -39,24 +39,29 @@
           %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples"} wiki
           to see how to add your own custom filters and views like:
         .row-fluid
-          .span6
-            %ul
-              %li
-                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-checkboxes"} Checkboxes
-              %li
-                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-radiobuttons"} Radio buttons
-              %li
-                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-drop-down-lists"} Drop down lists
-              %li
-                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-textsearches"} Text searches
-          .span6
-            %ul
-              %li
-                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-sliders"} Sliders
-              %li
-                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-date-sliders"} Date sliders
-              %li
-                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/List-search-results"} Results lists
+          %h4
+            Recycling services
+          %ul.inputs-list.unstyled
+            %li
+              %label.checkbox.inline
+                %input#cbType1{:type => "checkbox", :checked => true}/
+                %span.filter-box.filter-blue
+                City drop-off location
+            %li
+              %label.checkbox.inline
+                %input#cbType2{:type => "checkbox", :checked => true}/
+                %span.filter-box.filter-green
+                Private business
+            %li
+              %label.checkbox.inline
+                %input#cbType3{:type => "checkbox", :checked => true}/
+                %span.filter-box.filter-red
+                Hazardous materials
+            %li
+              %label.checkbox.inline
+                %input#cbType4{:type => "checkbox", :checked => true}/
+                %span.filter-box.filter-red
+                Something Else
       %p#result_count.alert.alert-info.lead
     .span8
       #map_canvas
