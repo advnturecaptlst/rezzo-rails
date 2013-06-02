@@ -4,9 +4,13 @@ $(document).ready(function(){
 
     fusionTableId:      "1DcX8-vvDmSQINxNX9zoetVjBnZo7tGM8LrTM57E",
     googleApiKey:       "AIzaSyD_JUx-4hkNn5bqllP4OyninnBp-YtOPbg",
+
+
     locationColumn:     "Geo",
-    defaultZoom:        11,
+
+    defaultZoom:        10,
     map_centroid:       new google.maps.LatLng(8.4, 1.166667),
+    // map_centroid:       new google.maps.LatLng(41.8781136, -87.66677856445312), 
     searchrecords:      null,
 
     initialize: function(){
@@ -16,7 +20,7 @@ $(document).ready(function(){
     },
 
     doSearch: function(location) {
-      MapsLib.clearSearch();
+      // MapsLib.clearSearch();
       console.log("doSearch")
       var whereClause = MapsLib.locationColumn + " not equal to ''";
       // var type_column = "'type'";
@@ -30,10 +34,9 @@ $(document).ready(function(){
       MapsLib.submitSearch(whereClause, map);
     },
 
-    clearSearch: function(){
-      console.log("clearSearch");
-      // MapsLib.searchrecords.setMap(null);
-    },
+    // clearSearch: function(){
+    //   console.log("clearSearch");
+    // },
 
     submitSearch: function(whereClause, map, location) {
       console.log("setMap");
@@ -43,6 +46,11 @@ $(document).ready(function(){
           select: MapsLib.locationColumn,
           where:  whereClause
         },
+        styles: [{
+          markerOptions: {
+            iconName: "large_red"
+          }
+        }],
         styleId: 2,
         templateId: 2
       });
@@ -71,55 +79,54 @@ $(document).ready(function(){
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
     }
-
   };
 
 // - application begin
 
-$(window).resize(function () {
-  var h = $(window).height(),
-            offsetTop = 90; // Calculate the top offset
+// $(window).resize(function () {
+//   var h = $(window).height(),
+//             offsetTop = 90; // Calculate the top offset
 
-            $('#map_canvas').css('height', (h - offsetTop));
-          }).resize();
+//             $('#map_canvas').css('height', (h - offsetTop));
+//           }).resize();
 
 $(function() {
   MapsLib.initialize();
 
-  $(':checkbox').click(function(){
-    MapsLib.doSearch();
-  });
+  // $(':checkbox').click(function(){
+  //   MapsLib.doSearch();
+  // });
 
-  $(':radio').click(function(){
-    MapsLib.doSearch();
-  });
+  // $(':radio').click(function(){
+  //   MapsLib.doSearch();
+  // });
 
-  $('#search_radius').change(function(){
-    MapsLib.doSearch();
-  });
+  // $('#search_radius').change(function(){
+  //   MapsLib.doSearch();
+  // });
 
-  $('#search').click(function(){
-    MapsLib.doSearch();
-  });
+  // $('#search').click(function(){
+  //   MapsLib.doSearch();
+  // });
 
-  $('#find_me').click(function(){
-    MapsLib.findMe(); 
-    return false;
-  });
+  // $('#find_me').click(function(){
+  //   MapsLib.findMe(); 
+  //   return false;
+  // });
 
-  $('#reset').click(function(){
-    $.address.parameter('address','');
-    MapsLib.initialize(); 
-    return false;
-  });
+  // $('#reset').click(function(){
+  //   $.address.parameter('address','');
+  //   MapsLib.initialize(); 
+  //   return false;
+  // });
 
-  $(":text").keydown(function(e){
-    var key =  e.keyCode ? e.keyCode : e.which;
-    if(key == 13) {
-      $('#search').click();
-      return false;
-    }
-  });
+  // $(":text").keydown(function(e){
+  //   var key =  e.keyCode ? e.keyCode : e.which;
+  //   if(key == 13) {
+  //     $('#search').click();
+  //     return false;
+  //   }
+  // });
 });
 
 });
