@@ -5,12 +5,10 @@ $(document).ready(function(){
     fusionTableId:      "1DcX8-vvDmSQINxNX9zoetVjBnZo7tGM8LrTM57E",
     googleApiKey:       "AIzaSyD_JUx-4hkNn5bqllP4OyninnBp-YtOPbg",
 
-
-    locationColumn:     "Geo",
+    locationColumn:     "Category_id",
 
     defaultZoom:        10,
     map_centroid:       new google.maps.LatLng(8.4, 1.166667),
-    // map_centroid:       new google.maps.LatLng(41.8781136, -87.66677856445312), 
     searchrecords:      null,
 
     initialize: function(){
@@ -28,14 +26,13 @@ $(document).ready(function(){
       // if ( $("#cbType1").is(':checked')) searchType += "1,";
       // if ( $("#cbType2").is(':checked')) searchType += "2,";
       // if ( $("#cbType3").is(':checked')) searchType += "3,";
-      // if ( $("#cbType4").is(':checked')) searchType += "4,";
       // whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
       console.log(whereClause);
       MapsLib.submitSearch(whereClause, map);
     },
 
     // clearSearch: function(){
-    //   console.log("clearSearch");
+    //   MapsLib.searchrecords.setMap(null);
     // },
 
     submitSearch: function(whereClause, map, location) {
@@ -54,6 +51,7 @@ $(document).ready(function(){
         styleId: 2,
         templateId: 2
       });
+      console.log(MapsLib.searchrecords);
       MapsLib.searchrecords.setMap(map);
     },
 
@@ -109,14 +107,14 @@ $(function() {
   //   MapsLib.doSearch();
   // });
 
-  // $('#find_me').click(function(){
-  //   MapsLib.findMe(); 
-  //   return false;
-  // });
+  $('#find_me').click(function(){
+    MapsLib.findMe();
+    return false;
+  });
 
   // $('#reset').click(function(){
   //   $.address.parameter('address','');
-  //   MapsLib.initialize(); 
+  //   MapsLib.initialize();
   //   return false;
   // });
 
