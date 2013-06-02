@@ -11,8 +11,9 @@ class PhotosController < ApplicationController
     File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
     end
-    latitude = EXIFR::JPEG.new("./public/" + "#{uploaded_io.original_filename}").gps.latitude
-    longitude = EXIFR::JPEG.new("./public/" + "#{uploaded_io.original_filename}").gps.longitude
+    photo_metadata = EXIFR::JPEG.new("./public/" + "#{uploaded_io.original_filename}")
+    latitude = photo_metadata.gps.latitude
+    longitude = photo_metadata.gps.longitude
     save_to_fusion_table(latitude, longitude)
   end
 
@@ -28,7 +29,7 @@ class PhotosController < ApplicationController
     tables = ft.show_tables
     rezzo  = tables.select{|t| t.name == "Rezzo"}.first
 
-    data = [{ "Latitude"   => latitude, "Longitude"  => longitude }]
+    data = [{ "Geo" => "<Point><coordinates>#{latitude},#{longitude},0.0</coordinates><Point>" }]
     rezzo.insert(data)
   end
 end
