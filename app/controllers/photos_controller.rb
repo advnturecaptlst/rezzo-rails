@@ -2,6 +2,10 @@ class PhotosController < ApplicationController
   def index
   end
 
+  def new
+
+  end
+
   def create
     uploaded_io = params[:picture]
     File.open(Rails.root.join('public', uploaded_io.original_filename), 'wb') do |file|

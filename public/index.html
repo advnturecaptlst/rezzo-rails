@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RezzoRails</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <head>
+    <style>
+      #map_canvas {
+        width: 500px;
+        height: 400px;
+      }
+    </style>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+  </head>
+  <body>
+    <div id="map_canvas"></div>
+    public page
+  </body>
+</html>
+
     <script>
       function initialize() {
         var map_canvas = document.getElementById('map_canvas');
@@ -16,21 +26,8 @@
         }
         var map = new google.maps.Map(map_canvas, map_options)
       }
-      google.maps.event.addDomListener(window, ‘load’, initialize);
     </script>
-    <style>
-      #map_canvas {
-        width: 500px;
-        height: 400px;
-      }
-    </style>
 
-</head>
-
-
-<body>
-
-<%= yield %>
-
-</body>
-</html>
+    <script>
+      initialize();
+    </script>
