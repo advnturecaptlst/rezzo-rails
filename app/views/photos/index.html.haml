@@ -1,3 +1,67 @@
-#map_canvas
-
-hello this is map
+.navbar
+  .navbar-inner
+    .container
+      %a.brand{:href => "/"} Searchable Map Template
+.container-fluid
+  .row-fluid
+    .span4
+      %p
+        This is a demo of
+        %a{:href => "http://derekeder.com"} Derek Eder's
+        %a{:href => "http://derekeder.com/searchable_map_template/"} Searchable Map Template
+        using Google
+        = succeed "." do
+          %a{:href => "http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595"} Fusion Tables
+        Use this section to give a little context your map. Maybe a link to
+        %a{:href => "#"} read more »
+      .well
+        %h4
+          Address
+          %small
+            (
+            %a#find_me{:href => "#"}> find me
+            )
+        %input#search_address.input-block-level{:placeholder => "Enter an address or an intersection", :type => "text"}/
+        %label
+          within
+          %select#search_radius.input-small
+            %option{:value => "400"} 2 blocks
+            %option{:value => "805"} 1/2 mile
+            %option{:value => "1610"} 1 mile
+            %option{:value => "3220"} 2 miles
+        %input#search.btn.btn-primary{:type => "button", :value => "Search"}/
+        %button#reset.btn Reset
+      .well
+        / Once you decide what filter you want, place the HTML code here. The section in the maps_lib.js is also marked. Once you're done, feel free to delete this explanatory section.
+        %h4 Custom filters and views
+        %p
+          Take a look at the
+          %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples"} wiki
+          to see how to add your own custom filters and views like:
+        .row-fluid
+          .span6
+            %ul
+              %li
+                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-checkboxes"} Checkboxes
+              %li
+                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-radiobuttons"} Radio buttons
+              %li
+                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-drop-down-lists"} Drop down lists
+              %li
+                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-textsearches"} Text searches
+          .span6
+            %ul
+              %li
+                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-sliders"} Sliders
+              %li
+                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-date-sliders"} Date sliders
+              %li
+                %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/List-search-results"} Results lists
+      %p#result_count.alert.alert-info.lead
+    .span8
+      #map_canvas
+      %p.pull-right
+        %a{:href => "http://derekeder.com/searchable_map_template/"} Searchable Map Template
+        by
+        = succeed "." do
+          %a{:href => "http://derekeder.com"} Derek Eder

@@ -1,5 +1,8 @@
 /* some code taken from http://matthewjamestaylor.com/blog/perfect-2-column-left-menu.htm */
-
+#map_canvas {
+  width: 600px;
+  height: 600px;
+}
 body {
   margin:0;
   padding:0;
