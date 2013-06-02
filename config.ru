@@ -1,4 +1,4 @@
 
-require 'rezzo'
+require './rezzo'
 
-run RezzoSinatra.new
+run Sinatra::Application
