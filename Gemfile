@@ -9,6 +9,7 @@ gem 'pg'
 gem 'exifr'
 gem 'filepicker-rails'
 gem 'debugger'
+gem 'fusion_tables'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
