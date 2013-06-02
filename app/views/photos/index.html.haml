@@ -1,19 +1,10 @@
 .navbar
   .navbar-inner
     .container
-      %a.brand{:href => "/"} Searchable Map Template
+      %a.brand{:href => "/"} Rezzo
 .container-fluid
   .row-fluid
     .span4
-      %p
-        This is a demo of
-        %a{:href => "http://derekeder.com"} Derek Eder's
-        %a{:href => "http://derekeder.com/searchable_map_template/"} Searchable Map Template
-        using Google
-        = succeed "." do
-          %a{:href => "http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595"} Fusion Tables
-        Use this section to give a little context your map. Maybe a link to
-        %a{:href => "#"} read more »
       .well
         %h4
           Address
@@ -32,12 +23,6 @@
         %input#search.btn.btn-primary{:type => "button", :value => "Search"}/
         %button#reset.btn Reset
       .well
-        / Once you decide what filter you want, place the HTML code here. The section in the maps_lib.js is also marked. Once you're done, feel free to delete this explanatory section.
-        %h4 Custom filters and views
-        %p
-          Take a look at the
-          %a{:href => "https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples"} wiki
-          to see how to add your own custom filters and views like:
         .row-fluid
           %h4
             Recycling services
@@ -46,22 +31,22 @@
               %label.checkbox.inline
                 %input#cbType1{:type => "checkbox", :checked => true}/
                 %span.filter-box.filter-blue
-                City drop-off location
+                Hospital
             %li
               %label.checkbox.inline
                 %input#cbType2{:type => "checkbox", :checked => true}/
                 %span.filter-box.filter-green
-                Private business
+                Clinic
             %li
               %label.checkbox.inline
                 %input#cbType3{:type => "checkbox", :checked => true}/
                 %span.filter-box.filter-red
-                Hazardous materials
+                Water
             %li
               %label.checkbox.inline
                 %input#cbType4{:type => "checkbox", :checked => true}/
                 %span.filter-box.filter-red
-                Something Else
+                School
       %p#result_count.alert.alert-info.lead
     .span8
       #map_canvas

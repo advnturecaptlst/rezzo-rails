@@ -6,7 +6,7 @@ $(document).ready(function(){
     googleApiKey:       "AIzaSyD_JUx-4hkNn5bqllP4OyninnBp-YtOPbg",
     locationColumn:     "Geo",
     defaultZoom:        11,
-    map_centroid:       new google.maps.LatLng(8.4, 1.166667),
+    map_centroid:       new google.maps.LatLng(8, 1.166667),
     searchrecords:      null,
 
     initialize: function(){
@@ -16,10 +16,10 @@ $(document).ready(function(){
     },
 
     doSearch: function(location) {
-      MapsLib.clearSearch();
+      // MapsLib.clearSearch();
       console.log("doSearch")
       var whereClause = MapsLib.locationColumn + " not equal to ''";
-      // var type_column = "'type'";
+      // var type_column = "'Category_id'";
       // var searchType = type_column + " IN (-1,";
       // if ( $("#cbType1").is(':checked')) searchType += "1,";
       // if ( $("#cbType2").is(':checked')) searchType += "2,";
@@ -43,9 +43,10 @@ $(document).ready(function(){
           select: MapsLib.locationColumn,
           where:  whereClause
         },
-        styleId: 2,
-        templateId: 2
+        styleId: 1,
+        templateId: 1
       });
+      map = new google.maps.Map(map_canvas, MapsLib.map_options());
       MapsLib.searchrecords.setMap(map);
     },
 
@@ -103,13 +104,13 @@ $(function() {
   });
 
   $('#find_me').click(function(){
-    MapsLib.findMe(); 
+    MapsLib.findMe();
     return false;
   });
 
   $('#reset').click(function(){
     $.address.parameter('address','');
-    MapsLib.initialize(); 
+    MapsLib.initialize();
     return false;
   });
 
