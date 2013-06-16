@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'rubygems'
 require 'bundler/setup'
-require 'Haml'
+require 'haml'
 require 'exifr'
 require 'fusion_tables'
 
