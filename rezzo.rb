@@ -38,8 +38,6 @@ end
 private
 
   def save_to_fusion_table(latitude, longitude)
-    p latitude
-    p longitude
     ft = GData::Client::FusionTables.new
     ft.clientlogin(ENV['GOOGLE_USERNAME'], ENV['GOOGLE_PASS'])
     ft.set_api_key(ENV['GOOGLE_KEY'])
