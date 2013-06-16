@@ -7,7 +7,7 @@ require 'fusion_tables'
 
 
 get "/" do
- haml :new
+ haml :temp
 end
 
 post "/ios" do
@@ -45,8 +45,8 @@ private
     ft.set_api_key(ENV['GOOGLE_KEY'])
 
     tables = ft.show_tables
-    rezzo  = tables.select{|t| t.name == "Togo"}.first
+    rezzo  = tables.select{|t| t.name == "Testing"}.first
 
-    data = [{ "Geo" => "#{latitude},#{longitude}", "Village" => "Disneyland" }]
+    data = [{ "Geo" => "#{latitude},#{longitude}", "Village" => "Testing" }]
     rezzo.insert(data)
   end
