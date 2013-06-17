@@ -1,0 +1,39 @@
+/ =form_tag(photos_path, :multipart => true) do
+/   =file_field_tag 'picture'
+/   =submit_tag
+%body
+  #wrapper
+    #header.bar
+      %h1 Rezzo
+    .bar
+      #upload.main
+        .entry
+          / for each photo
+          .column
+          %form{:action => "/", :method => "post", :enctype=>'multipart/form-data'}
+            .column
+              %fieldset
+                %legend Resource Information
+                %p
+                  Category:
+                  %select{:name => "category"}
+                    %option{:value => "school"} School
+                    %option{:value => "water"} Water Pump
+                    %option{:value => "clinic"} Clinic
+                    %option{:value => "food"} Food Spot
+                %p
+                  Village:
+                  %br/
+                  %input{:name => "Title", :style => "width: 20em;", :type => "text"}/
+                %p
+                  Description:
+                  %br/
+                  %textarea{:name => "Description", :style => "height:6em; width: 20em;"}
+                    :preserve
+                %p
+                  %input(type='file' name='picture')    
+                  %br
+                  %input(type='submit' value='Upload!')
+              %p= @message
+
+
