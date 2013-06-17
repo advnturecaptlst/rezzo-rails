@@ -12,10 +12,14 @@ end
 
 post "/" do
   photo_metadata = EXIFR::JPEG.new(params[:picture][:tempfile])
-  latitude = photo_metadata.gps.latitude
-  longitude = photo_metadata.gps.longitude
-  save_to_fusion_table(latitude, longitude)
-  @message = "File Upload Successful"
+  if photo_metadata.gps
+    latitude = photo_metadata.gps.latitude
+    longitude = photo_metadata.gps.longitude
+    save_to_fusion_table(latitude, longitude)
+    @message = "File Upload Successful."
+  else
+    @message = "This photo has no GPS Data."
+  end
   haml :new
 end
 
@@ -46,14 +50,14 @@ end
 
 private
 
-  def save_to_fusion_table(latitude, longitude)
-    ft = GData::Client::FusionTables.new
-    ft.clientlogin(ENV['GOOGLE_USERNAME'], ENV['GOOGLE_PASS'])
-    ft.set_api_key(ENV['GOOGLE_KEY'])
+def save_to_fusion_table(latitude, longitude)
+  ft = GData::Client::FusionTables.new
+  ft.clientlogin(ENV['GOOGLE_USERNAME'], ENV['GOOGLE_PASS'])
+  ft.set_api_key(ENV['GOOGLE_KEY'])
 
-    tables = ft.show_tables
-    rezzo  = tables.select{|t| t.name == "Testing"}.first
+  tables = ft.show_tables
+  rezzo  = tables.select{|t| t.name == "Testing"}.first
 
-    data = [{ "Geo" => "#{latitude},#{longitude}", "Village" => "Testing" }]
-    rezzo.insert(data)
-  end
+  data = [{ "Geo" => "#{latitude},#{longitude}", "Village" => "Testing" }]
+  rezzo.insert(data)
+end
