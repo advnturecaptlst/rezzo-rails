@@ -16,7 +16,7 @@
                 %legend Resource Information
                 %p
                   Category:
-                  %select{:name => "category"}
+                  %select{:name => "resource_info[category]"}
                     %option{:value => "school"} School
                     %option{:value => "water"} Water Pump
                     %option{:value => "clinic"} Clinic
@@ -24,11 +24,11 @@
                 %p
                   Village:
                   %br/
-                  %input{:name => "Title", :style => "width: 20em;", :type => "text"}/
+                  %input{:name => "resource_info[village]", :style => "width: 20em;", :type => "text"}/
                 %p
                   Description:
                   %br/
-                  %textarea{:name => "Description", :style => "height:6em; width: 20em;"}
+                  %textarea{:name => "resource_info[description]", :style => "height:6em; width: 20em;"}
                     :preserve
                 %p
                   %input(type='file' name='picture')    

@@ -11,24 +11,27 @@ get "/" do
 end
 
 post "/" do
+  p params
   photo_metadata = EXIFR::JPEG.new(params[:picture][:tempfile])
   if photo_metadata.gps
     latitude = photo_metadata.gps.latitude
     longitude = photo_metadata.gps.longitude
-    save_to_fusion_table(latitude, longitude)
+    save_to_fusion_table(latitude, longitude, params[:resource_info])
     @message = "File Upload Successful."
   else
     @message = "This photo has no GPS Data."
   end
-  haml :new
+    haml :new
 end
+
+# {:resource_info=>{village: "", description: "", category: "" }}
 
 post "/ios" do
   params.each do |k, v|
     data = JSON.parse(v)
     latitude = data['latitude']
     longitude = data['longitude']
-    save_to_fusion_table(latitude, longitude)
+    save_to_fusion_table(latitude, longitude, resource_info)
   end
 end
 
@@ -50,7 +53,7 @@ end
 
 private
 
-def save_to_fusion_table(latitude, longitude)
+def save_to_fusion_table(latitude, longitude, resource_info={village: "no info", description: "no info", category: "no info" })
   ft = GData::Client::FusionTables.new
   ft.clientlogin(ENV['GOOGLE_USERNAME'], ENV['GOOGLE_PASS'])
   ft.set_api_key(ENV['GOOGLE_KEY'])
@@ -58,6 +61,6 @@ def save_to_fusion_table(latitude, longitude)
   tables = ft.show_tables
   rezzo  = tables.select{|t| t.name == "Testing"}.first
 
-  data = [{ "Geo" => "#{latitude},#{longitude}", "Village" => "Testing" }]
+  data = [{ "Geo" => "#{latitude},#{longitude}", "Village" => resource_info[:village], "Description" => resource_info[:description], "Category" => resource_info[:category]}]
   rezzo.insert(data)
 end
