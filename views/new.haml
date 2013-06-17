@@ -1,38 +1,36 @@
-/ =form_tag(photos_path, :multipart => true) do
-/   =file_field_tag 'picture'
-/   =submit_tag
+!!!
+%head
+  %meta{:charset => "utf-8"}/
+  %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+  %title rezzo webapp
 %body
   #wrapper
-    #header.bar
+    %nav
       %h1 Rezzo
-    .bar
-      #upload.main
-        .entry
-          %form{:action => "/", :method => "post", :enctype=>'multipart/form-data'}
-            .column
-              %fieldset
-                %legend Resource Information
-                %label{:for => "resource_info[category]"} Category:
-                %select{:name => "resource_info[category]", :class =>"resource_input"}
-                  %option{:value => "school"} School
-                  %option{:value => "water"} Water Pump
-                  %option{:value => "clinic"} Clinic
-                  %option{:value => "food"} Food Spot
-                  %option{:value => "other"} Other
-                %br
-                %label{:for => "resource_info[village]"} Village:
-                %br
-                %input{:name => "resource_info[village]", :style => "width: 20em;", :type => "text", :class =>"resource_input"}/
-                %br
-                %label{:for => "resource_info[description]"} Description:
-                %br
-                %textarea{:name => "resource_info[description]", :style => "height:6em; width: 20em;", :class =>"resource_input"}
-                %br
-                %input(type='file' name='picture')    
-                %br
-                %input(type='submit' value='Submit')
-                .message
-                  %p= @message
-                  %p note: you need to take the photo with a gps enabled phone/camera.
-                  %p Email questions/comments at <a href="mailto:samsamkies@gmail.com"> samsamkies@gmail.com</a>
+    %form{:action => "/", :method => "post", :enctype=>'multipart/form-data'}
+      %fieldset
+        %legend Resource Information
+        %label{:for => "resource_info[category]"} Category:
+        %select{:name => "resource_info[category]", :class =>"resource_input"}
+          %option{:value => "school"} School
+          %option{:value => "water"} Water Pump
+          %option{:value => "clinic"} Clinic
+          %option{:value => "food"} Food Spot
+          %option{:value => "other"} Other
+        %br
+        %label{:for => "resource_info[village]"} Village:
+        %br
+        %input{:name => "resource_info[village]", :style => "width: 20em;", :type => "text", :class =>"resource_input"}/
+        %br
+        %label{:for => "resource_info[description]"} Description:
+        %br
+        %textarea{:name => "resource_info[description]", :style => "height:6em; width: 20em;", :class =>"resource_input"}
+        %br
+        %input(type='file' name='picture')    
+        %br
+        %input(type='submit' value='Submit')
+        .message
+          %p= @message
+          %p note: you need to take the photo with a gps enabled phone/camera.
+          %p Email questions/comments at <a href="mailto:samsamkies@gmail.com"> samsamkies@gmail.com</a>
 
