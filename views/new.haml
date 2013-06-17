@@ -8,31 +8,31 @@
     .bar
       #upload.main
         .entry
-          / for each photo
-          .column
           %form{:action => "/", :method => "post", :enctype=>'multipart/form-data'}
             .column
               %fieldset
                 %legend Resource Information
-                %p
-                  Category:
-                  %select{:name => "resource_info[category]"}
-                    %option{:value => "school"} School
-                    %option{:value => "water"} Water Pump
-                    %option{:value => "clinic"} Clinic
-                    %option{:value => "food"} Food Spot
-                %p
-                  Village:
-                  %br/
-                  %input{:name => "resource_info[village]", :style => "width: 20em;", :type => "text"}/
-                %p
-                  Description:
-                  %br/
-                  %textarea{:name => "resource_info[description]", :style => "height:6em; width: 20em;"}
-                    :preserve
-                %p
-                  %input(type='file' name='picture')    
-                  %br
-                  %input(type='submit' value='Upload!')
-              %p= @message
+                %label{:for => "resource_info[category]"} Category:
+                %select{:name => "resource_info[category]", :class =>"resource_input"}
+                  %option{:value => "school"} School
+                  %option{:value => "water"} Water Pump
+                  %option{:value => "clinic"} Clinic
+                  %option{:value => "food"} Food Spot
+                  %option{:value => "other"} Other
+                %br
+                %label{:for => "resource_info[village]"} Village:
+                %br
+                %input{:name => "resource_info[village]", :style => "width: 20em;", :type => "text", :class =>"resource_input"}/
+                %br
+                %label{:for => "resource_info[description]"} Description:
+                %br
+                %textarea{:name => "resource_info[description]", :style => "height:6em; width: 20em;", :class =>"resource_input"}
+                %br
+                %input(type='file' name='picture')    
+                %br
+                %input(type='submit' value='Submit')
+                .message
+                  %p= @message
+                  %p note: you need to take the photo with a gps enabled phone/camera.
+                  %p Email questions/comments at <a href="mailto:samsamkies@gmail.com"> samsamkies@gmail.com</a>
 
