@@ -29,9 +29,7 @@ end
 post "/ios" do
   params.each do |k, v|
     data = JSON.parse(v)
-    latitude = data['latitude']
-    longitude = data['longitude']
-    save_to_fusion_table(latitude, longitude, resource_info)
+    save_to_fusion_table(data['latitude'], data['longitude'])
   end
 end
 
