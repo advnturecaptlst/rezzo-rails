@@ -7,7 +7,7 @@ require 'fusion_tables'
 
 
 get "/" do
- haml :new
+  haml :new
 end
 
 post "/" do
@@ -29,36 +29,28 @@ end
 post "/ios" do
   params.each do |k, v|
     data = JSON.parse(v)
-    save_to_fusion_table(data['latitude'], data['longitude'])
+    resource_info = {title: data["title"], region: data["region"], notes: data["notes"], resources: data["resources"]}
+    save_to_fusion_table(data['latitude'], data['longitude'], resource_info)
   end
-end
-
-post "/android" do
-  p params
-  # uploaded_io = params["picture"]
-  # @filename = params[:picture][:filename]
-  # file = params[:picture][:tempfile]
-
-  # File.open("./public/#{@filename}", 'wb') do |f|
-  #   f.write(file.read)
-  # end
-
-  # photo_metadata = EXIFR::JPEG.new("./public/" + @filename)
-  # latitude = photo_metadata.gps.latitude
-  # longitude = photo_metadata.gps.longitude
-  # save_to_fusion_table(latitude, longitude)
 end
 
 private
 
-def save_to_fusion_table(latitude, longitude, resource_info={village: "no info", description: "no info", category: "no info" })
+def save_to_fusion_table(latitude, longitude, resource_info={title: "No info", region: "no info", notes: "no info", resources: "no info" })
   ft = GData::Client::FusionTables.new
   ft.clientlogin(ENV['GOOGLE_USERNAME'], ENV['GOOGLE_PASS'])
   ft.set_api_key(ENV['GOOGLE_KEY'])
 
   tables = ft.show_tables
-  rezzo  = tables.select{|t| t.name == "Testing"}.first
+  rezzo  = tables.select{|t| t.name == "Tanzania"}.first
 
-  data = [{ "Geo" => "#{latitude},#{longitude}", "Village" => resource_info[:village], "Description" => resource_info[:description], "Category" => resource_info[:category]}]
+  resource_string = stringify_resources(resource_info[:resources])
+  data = [{ "Geo" => "#{latitude},#{longitude}", "Title" => resource_info[:title], "Notes" => resource_info[:notes], "Resources" => resource_string, "Region" => resource_info[:region]}]
   rezzo.insert(data)
+end
+
+def stringify_resources(resources)
+  resource_string = ""
+  resources.each { |k,v| resource_string << "#{v.join(';')};"}
+  resource_string
 end
