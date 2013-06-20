@@ -10,23 +10,27 @@
     %form{:action => "/", :method => "post", :enctype=>'multipart/form-data'}
       %fieldset
         %legend Resource Information
-        %label{:for => "resource_info[category]"} Category:
-        %select{:name => "resource_info[category]", :class =>"resource_input"}
+        %label{:for => "resource_info[resources]"} Resources:
+        %select{:name => "resource_info[resources]", :class =>"resource_input"}
           %option{:value => "school"} School
           %option{:value => "water"} Water Pump
           %option{:value => "clinic"} Clinic
           %option{:value => "food"} Food Spot
           %option{:value => "other"} Other
         %br
-        %label{:for => "resource_info[village]"} Village:
+        %label{:for => "resource_info[title]"} title:
         %br
-        %input{:name => "resource_info[village]", :style => "width: 20em;", :type => "text", :class =>"resource_input"}/
+        %input{:name => "resource_info[title]", :style => "width: 20em;", :type => "text", :class =>"resource_input"}/
         %br
-        %label{:for => "resource_info[description]"} Description:
+        %label{:for => "resource_info[region]"} Region:
         %br
-        %textarea{:name => "resource_info[description]", :style => "height:6em; width: 20em;", :class =>"resource_input"}
+        %input{:name => "resource_info[region]", :style => "width: 20em;", :type => "text", :class =>"resource_input"}/
         %br
-        %input(type='file' name='picture')    
+        %label{:for => "resource_info[notes]"} Notes:
+        %br
+        %textarea{:name => "resource_info[notes]", :style => "height:6em; width: 20em;", :class =>"resource_input"}
+        %br
+        %input(type='file' name='picture')
         %br
         %input(type='submit' value='Submit')
         .message
